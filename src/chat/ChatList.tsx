@@ -3,6 +3,7 @@ import { useAppSelector } from '../store';
 
 import { ChatMessage } from '.';
 import { Message } from '../types/interfaces';
+import { Box } from '@mui/material';
 
 export const ChatList = () => {
   const { messages } = useAppSelector((state) => state.chat);
@@ -15,14 +16,13 @@ export const ChatList = () => {
   }, [messages]);
 
   return (
-    <>
+    <Box>
       {messages.map(({ id, messageType, title, content }: Message) => (
-        <ChatMessage
-          key={id}
-          message={{ id, messageType, title, content }}
-        />
+        <Box key={id}>
+          <ChatMessage message={{ id, messageType, title, content }} />
+        </Box>
       ))}
       <div ref={endOfMessagesRef} />
-    </>
+    </Box>
   );
 };
