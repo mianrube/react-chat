@@ -1,16 +1,17 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { nanoid } from '@reduxjs/toolkit';
 
-import { useAppDispatch } from '../store';
-import { addMessage } from '../store/chat';
+import { useAppDispatch, useAppSelector } from '../store';
+import { addMessage, setIsWaitingResponse } from '../store/chat';
 
 import { MessageTypeEnum } from '../types/enums';
 import { Message } from '../types/interfaces';
-import { Box, IconButton, TextField } from '@mui/material';
+import { Box, IconButton, InputAdornment, OutlinedInput } from '@mui/material';
 import { Send } from '@mui/icons-material';
 
 export const InputPrompt = () => {
   const dispatch = useAppDispatch();
+  const { isWaitingResponse } = useAppSelector((state) => state.chat);
 
   const [prompt, setPrompt] = useState<string>('');
 
@@ -20,6 +21,8 @@ export const InputPrompt = () => {
 
   const handleSubmitPrompt = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    dispatch(setIsWaitingResponse(true));
 
     if (prompt === '') {
       return;
@@ -46,6 +49,7 @@ export const InputPrompt = () => {
     };
     setTimeout(() => {
       dispatch(addMessage(newMessageBot));
+      dispatch(setIsWaitingResponse(false));
     }, 1500);
   };
 
@@ -55,21 +59,27 @@ export const InputPrompt = () => {
       onSubmit={handleSubmitPrompt}
       sx={{ padding: '10px' }}
     >
-      <TextField
-        variant="outlined"
-        size="small"
-        sx={{ width: '40vw', minWidth: '300px', backgroundColor: 'white' }}
+      <OutlinedInput
+        key={isWaitingResponse ? 'disabled' : 'enabled'}
+        autoFocus
+        sx={{ width: '60vw', minWidth: '300px', maxWidth: '600px', backgroundColor: 'white' }}
         name="promt"
         value={prompt}
         onChange={handleChangePromt}
+        endAdornment={
+          <InputAdornment position="end">
+            <IconButton
+              type="submit"
+              sx={{ marginLeft: '10px' }}
+              color="primary"
+              disabled={isWaitingResponse}
+            >
+              <Send />
+            </IconButton>
+          </InputAdornment>
+        }
+        disabled={isWaitingResponse}
       />
-      <IconButton
-        type="submit"
-        sx={{ marginLeft: '10px' }}
-        color="primary"
-      >
-        <Send />
-      </IconButton>
     </Box>
   );
 };

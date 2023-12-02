@@ -5,6 +5,7 @@ import { MessageTypeEnum } from '../../types/enums';
 
 export interface ChatState {
   messages: Message[];
+  isWaitingResponse: boolean;
 }
 
 const initialState: ChatState = {
@@ -16,6 +17,7 @@ const initialState: ChatState = {
       content: 'I am here to help you with your questions.',
     },
   ],
+  isWaitingResponse: false,
 };
 
 export const chatSlice = createSlice({
@@ -28,7 +30,10 @@ export const chatSlice = createSlice({
     clearMessages: (state) => {
       state.messages = [];
     },
+    setIsWaitingResponse: (state, action: PayloadAction<boolean>) => {
+      state.isWaitingResponse = action.payload;
+    },
   },
 });
 
-export const { addMessage, clearMessages } = chatSlice.actions;
+export const { addMessage, clearMessages, setIsWaitingResponse } = chatSlice.actions;

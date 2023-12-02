@@ -16,7 +16,7 @@ export const ChatList = () => {
   }, [messages]);
 
   return (
-    <Box>
+    <Box sx={{ paddingY: '0', paddingX: '20px' }}>
       {messages.map(({ id, messageType, title, content }: Message) => (
         <Box key={id}>
           <ChatMessage message={{ id, messageType, title, content }} />

@@ -1,9 +1,9 @@
-import { Box, Container, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { ChatList, InputPrompt } from '.';
 
 export const Chat = () => {
   return (
-    <Container
+    <Box
       maxWidth="xl"
       sx={{ background: 'aliceblue' }}
     >
@@ -13,18 +13,21 @@ export const Chat = () => {
             position: 'sticky',
             top: 0,
             width: '100%',
-            paddingTop: '20px',
+            padding: '20px',
+            borderBottom: '1px solid #ccc',
+            backgroundColor: 'Teal',
+            color: 'white',
           }}
         >
           <Typography variant="h3">Ejemplo de chat</Typography>
         </Box>
-        <Box sx={{ overflowY: 'auto', flexGrow: '1', marginTop: '20px', marginBottom: '60px' }}>
+        <Box sx={{ overflowY: 'auto', flexGrow: '1', marginTop: '0px', marginBottom: '90px' }}>
           <ChatList />
         </Box>
         <Box sx={{ position: 'fixed', bottom: '5px', width: '100%', display: 'flex', justifyContent: 'center' }}>
           <InputPrompt />
         </Box>
       </Box>
-    </Container>
+    </Box>
   );
 };
