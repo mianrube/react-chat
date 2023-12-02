@@ -13,8 +13,8 @@ const initialState: ChatState = {
     {
       id: nanoid(),
       messageType: MessageTypeEnum.BOT,
-      title: 'Hello, I am a bot!',
-      content: 'I am here to help you with your questions.',
+      title: 'Hola, soy tu IA!',
+      content: 'Estoy aquí para resolver tus dudas.',
     },
   ],
   isWaitingResponse: false,

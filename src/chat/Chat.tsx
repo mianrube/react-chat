@@ -1,5 +1,6 @@
-import { Box, Typography } from '@mui/material';
+import { Box, Stack, Typography } from '@mui/material';
 import { ChatList, InputPrompt } from '.';
+import { Psychology } from '@mui/icons-material';
 
 export const Chat = () => {
   return (
@@ -19,12 +20,19 @@ export const Chat = () => {
             color: 'white',
           }}
         >
-          <Typography variant="h3">Ejemplo de chat</Typography>
+          <Stack
+            direction="row"
+            spacing={2}
+            alignItems="center"
+          >
+            <Psychology sx={{ fontSize: 50 }} />
+            <Typography variant="h3">Mi propia IA</Typography>
+          </Stack>
         </Box>
-        <Box sx={{ overflowY: 'auto', flexGrow: '1', marginTop: '0px', marginBottom: '90px' }}>
+        <Box sx={{ overflowY: 'auto', flexGrow: '1', marginTop: '0px', marginBottom: '80px' }}>
           <ChatList />
         </Box>
-        <Box sx={{ position: 'fixed', bottom: '5px', width: '100%', display: 'flex', justifyContent: 'center' }}>
+        <Box sx={{ position: 'fixed', bottom: '0px', width: '100%', display: 'flex', justifyContent: 'center' }}>
           <InputPrompt />
         </Box>
       </Box>

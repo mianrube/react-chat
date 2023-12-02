@@ -57,7 +57,7 @@ export const InputPrompt = () => {
     <Box
       component="form"
       onSubmit={handleSubmitPrompt}
-      sx={{ padding: '10px' }}
+      sx={{ padding: '10px 10px 20px 10px' }}
     >
       <OutlinedInput
         key={isWaitingResponse ? 'disabled' : 'enabled'}

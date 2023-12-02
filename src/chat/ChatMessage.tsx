@@ -11,21 +11,24 @@ export const ChatMessage = ({ message }: ChatMessageProps) => {
   return (
     <Box
       sx={{
-        maxWidth: '50vw',
+        maxWidth: '55vw',
         minWidth: '300px',
-        marginTop: '10px',
+        marginTop: '15px',
+        marginBottom: '10px',
         marginLeft: message.messageType === MessageTypeEnum.BOT ? '0px' : 'auto',
         marginRight: message.messageType === MessageTypeEnum.BOT ? 'auto' : '0px',
       }}
     >
       <Card
         sx={{
-          borderLeft: message.messageType === MessageTypeEnum.BOT ? '4px solid FireBrick' : 'none',
-          borderRight: message.messageType === MessageTypeEnum.MYSELF ? '4px solid SteelBlue' : 'none',
+          borderLeft: message.messageType === MessageTypeEnum.BOT ? '5px solid FireBrick' : 'none',
+          borderRight: message.messageType === MessageTypeEnum.MYSELF ? '5px solid SteelBlue' : 'none',
         }}
       >
         <CardHeader
-          avatar={<Avatar sx={{ bgcolor: 'navy' }}>{message.messageType === MessageTypeEnum.BOT ? 'IA' : 'MB'}</Avatar>}
+          avatar={<Avatar sx={{
+            bgcolor: message.messageType === MessageTypeEnum.BOT ? 'FireBrick' : 'SteelBlue',
+          }}>{message.messageType === MessageTypeEnum.BOT ? 'IA' : 'MB'}</Avatar>}
           action={
             message.messageType === MessageTypeEnum.BOT && (
               <>
